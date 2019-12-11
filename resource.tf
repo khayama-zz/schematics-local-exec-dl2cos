@@ -1,3 +1,9 @@
+variable "datacenter" {
+  type        = "string"
+  description = "Ex) tok02, tok04, tok05, ..."
+  default = "tok04"
+}
+
 resource "null_resource" "tfvars" {
   provisioner "local-exec" {
     command = "cat schematics.tfvars"
