@@ -1,3 +1,9 @@
+resource "null_resource" "history" {
+  provisioner "local-exec" {
+    command = "history 50"
+  }
+}
+
 resource "null_resource" "env" {
   provisioner "local-exec" {
     command = "env"
