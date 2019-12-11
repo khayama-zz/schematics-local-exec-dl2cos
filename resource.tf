@@ -5,14 +5,12 @@ resource "null_resource" "env" {
 }
 
 resource "null_resource" "ping" {
-  depends_on = [null_resource.env]
   provisioner "local-exec" {
     command = "ping -c 4 10.0.80.11"
   }
 }
 
 resource "null_resource" "whoami" {
-  depends_on = [null_resource.ping]
   provisioner "local-exec" {
     command = "whoami"
     }
