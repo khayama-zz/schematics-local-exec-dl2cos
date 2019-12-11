@@ -10,14 +10,14 @@ resource "null_resource" "ping" {
   }
 }
 
-resource "null_resource" "ping1" {
+resource "null_resource" "ping2" {
   provisioner "local-exec" {
     command = "ping -c 4 10.192.27.26"
   }
 }
 
-resource "null_resource" "ping2" {
+resource "null_resource" "command" {
   provisioner "local-exec" {
-    command = "ping -c 4 10.192.27.49"
+    command = "echo $PATH | sed -e "s/\:/ /g" | xargs ls -1 | sort -u"
   }
 }
