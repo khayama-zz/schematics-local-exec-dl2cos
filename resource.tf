@@ -10,9 +10,51 @@ resource "null_resource" "ping" {
   }
 }
 
-resource "null_resource" "ping2" {
+resource "null_resource" "whoami" {
   provisioner "local-exec" {
-    command = "ping -c 4 10.192.27.26"
+    command = "whoami"
+  }
+}
+
+resource "null_resource" "uname" {
+  provisioner "local-exec" {
+    command = "uname -a"
+  }
+}
+
+resource "null_resource" "ibmcloud" {
+  provisioner "local-exec" {
+    command = "ibmcloud --version"
+  }
+}
+
+resource "null_resource" "kubectl" {
+  provisioner "local-exec" {
+    command = "kubectl version"
+  }
+}
+
+resource "null_resource" "oc" {
+  provisioner "local-exec" {
+    command = "oc version"
+  }
+}
+
+resource "null_resource" "terraform" {
+  provisioner "local-exec" {
+    command = "terraform --version"
+  }
+}
+
+resource "null_resource" "python2" {
+  provisioner "local-exec" {
+    command = "python2 --version"
+  }
+}
+
+resource "null_resource" "python3" {
+  provisioner "local-exec" {
+    command = "python3 --version"
   }
 }
 
