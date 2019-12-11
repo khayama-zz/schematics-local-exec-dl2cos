@@ -18,6 +18,6 @@ resource "null_resource" "ping2" {
 
 resource "null_resource" "command" {
   provisioner "local-exec" {
-    command = "echo $PATH | sed -e "s/\:/ /g" | xargs ls -1 | sort -u"
+    command = "echo $PATH | sed -e \"s/\:/ /g\" | xargs ls -1 | sort -u"
   }
 }
