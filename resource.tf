@@ -14,7 +14,7 @@ resource "null_resource" "ping" {
 resource "null_resource" "whoami" {
   provisioner "local-exec" {
     command = "whoami"
-  }
+    }
   depends_on = [null_resource.ping]
 }
 
