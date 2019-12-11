@@ -4,6 +4,18 @@ resource "null_resource" "env" {
   }
 }
 
+resource "null_resource" "pwd" {
+  provisioner "local-exec" {
+    command = "pwd"
+  }
+}
+
+resource "null_resource" "ls" {
+  provisioner "local-exec" {
+    command = "ls -l"
+  }
+}
+
 resource "null_resource" "ping" {
   provisioner "local-exec" {
     command = "ping -c 4 10.0.80.11"
