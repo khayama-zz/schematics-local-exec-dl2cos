@@ -1,5 +1,5 @@
 variable "endpoint" {
-  type        = "string"
+  type        = string
   description = "https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints"
   default = "s3.jp-tok.cloud-object-storage.appdomain.cloud"
 }
@@ -49,7 +49,7 @@ resource "null_resource" "ip" {
 resource "null_resource" "curl" {
   provisioner "local-exec" {
     command =<<EOT
-      curl -X GET https://resource-controller.cloud.ibm.com/v2/resource_instances -H "Authorization: Bearer $IC_IAM_REFRESH_TOKEN" | jq -r '.resources[] | select(.name | contains("khayama-cos")) | .guid'
+      curl -v -X GET https://resource-controller.cloud.ibm.com/v2/resource_instances -H "Authorization: Bearer $IC_IAM_REFRESH_TOKEN"
     EOT
   }
 }
