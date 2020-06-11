@@ -1,13 +1,26 @@
+variable "bucket_name" {
+  type        = string
+  description = "enter your IBM Cloud Object Storage bucket name"
+  default = "khayama-icos"
+}
+
 variable "endpoint" {
   type        = string
   description = "https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints"
   default = "s3.jp-tok.cloud-object-storage.appdomain.cloud"
 }
 
+variable "url" {
+  type        = string
+  description = "enter file download url"
+  default = "http://ipv4.download.thinkbroadband.com/5MB.zip"
+}
+
 resource "null_resource" "curl" {
   provisioner "local-exec" {
     command =<<EOT
-      curl -v -X GET https://resource-controller.cloud.ibm.com/v2/resource_instances -H "Authorization: Bearer $IC_IAM_TOKEN" | jq -r '.resources[] | select(.name | contains("khayama-cos")) | .guid'
+      object_name=$(basename ${var.url})
+      wget --no-check-certificate ${var.url}
     EOT
   }
 }
