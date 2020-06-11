@@ -18,7 +18,7 @@
         {
           "name": "datacenter",
           "value": "tok05",
-          "type": "string>",
+          "type": "string",
           "secure": false
         }
       ]
