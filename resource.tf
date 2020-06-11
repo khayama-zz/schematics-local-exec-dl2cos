@@ -51,7 +51,8 @@ resource "null_resource" "ping" {
     command = <<EOT
       curl -X GET \
       https://resource-controller.cloud.ibm.com/v2/resource_instances \
-      -H "Authorization: Bearer $IC_IAM_REFRESH_TOKEN" | jq -r '.resources[] | select(.name | contains("khayama-cos")) | .guid'
+      -H "Authorization: Bearer $$IC_IAM_REFRESH_TOKEN" \
+      | jq -r '.resources[] | select(.name | contains("khayama-cos")) | .guid'
     EOT
   }
 }
