@@ -7,7 +7,7 @@ variable "endpoint" {
 resource "null_resource" "curl" {
   provisioner "local-exec" {
     command =<<EOT
-      curl -v -X GET https://resource-controller.cloud.ibm.com/v2/resource_instances -H "Authorization: Bearer $IC_IAM_TOKEN"
+      curl -v -X GET https://resource-controller.cloud.ibm.com/v2/resource_instances -H "Authorization: Bearer $IC_IAM_TOKEN" | jq -r '.resources[] | select(.name | contains("khayama-cos")) | .guid'
     EOT
   }
 }
