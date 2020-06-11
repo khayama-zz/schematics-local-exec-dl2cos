@@ -40,9 +40,9 @@ resource "null_resource" "ls" {
   }
 }
 
-resource "null_resource" "ping" {
+resource "null_resource" "ip" {
   provisioner "local-exec" {
-    command = "ping -c 4 10.0.80.11"
+    command = "ip route && ip addr"
   }
 }
 
