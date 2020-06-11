@@ -26,7 +26,11 @@ resource "null_resource" "curl" {
     command =<<EOT
       object_name=$(basename ${var.url})
       echo $object_name
-      wget --no-check-certificate ${var.url}
+      wget -nv --no-check-certificate ${var.url}
+      if [ $? -ne 0 ]; then
+        echo "[ERROR] 正常にダウンロードできませんでした"
+        exit 1
+      fi
       ls -l
       curl -v -X PUT https://${var.bucket_name}.${var.endpoint}/$object_name -H "Authorization: Bearer $IC_IAM_TOKEN" -T $object_name
     EOT
