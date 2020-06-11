@@ -1,6 +1,8 @@
 {
   "name": "khayama-local-exec",
-  "type": "terraform_v0.12",
+  "type": [
+    "terraform_v0.12"
+  ],
   "description": "",
   "tags": ["owner:khayama"],
   "resource_group": "khayama-rg",
