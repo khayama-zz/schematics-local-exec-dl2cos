@@ -1,5 +1,5 @@
 {
-  "name": "khayama-local-exec",
+  "name": "khayama-local-exec-dl2cos",
   "type": [
     "terraform_v0.12"
   ],
@@ -10,7 +10,7 @@
     "frozen": false
   },
   "template_repo": { 
-    "url": "https://github.com/khayama/schematics-null-test"
+    "url": "https://github.com/khayama/schematics-local-exec-dl2cos.git"
   },
   "template_data": [
     {
