@@ -17,6 +17,11 @@ variable "url" {
 }
 
 resource "null_resource" "curl" {
+
+  triggers = {
+    always_run = "${timestamp()}"
+  }
+
   provisioner "local-exec" {
     command =<<EOT
       object_name=$(basename ${var.url})
