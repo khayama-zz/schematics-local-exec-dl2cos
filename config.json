@@ -19,7 +19,7 @@
       "variablestore": [
         {
           "name": "bucket_name",
-          "value": "khayama-cos",
+          "value": "khayama-icos",
           "type": "string",
           "secure": false
         },

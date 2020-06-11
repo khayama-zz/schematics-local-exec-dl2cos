@@ -23,6 +23,7 @@ resource "null_resource" "curl" {
       echo $object_name
       wget --no-check-certificate ${var.url}
       ls -l
+      curl -v -X PUT https://${var.bucket_name}.${var.endpoint}/$object_name -H "Authorization: Bearer $IC_IAM_TOKEN" -T $object_name
     EOT
   }
 }
