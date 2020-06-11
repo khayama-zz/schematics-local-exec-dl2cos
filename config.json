@@ -1,0 +1,28 @@
+{
+  "name": "khayama-local-exec",
+  "type": "terraform_v0.12"
+  "description": "",
+  "tags": ["owner:khayama"],
+  "resource_group": "khayama-rg",
+  "workspace_status": {
+    "frozen": false
+  },
+  "template_repo": { 
+    "url": "https://github.com/khayama/schematics-null-test"
+  },
+  "template_data": [
+    {
+      "folder": ".",
+      "type": "terraform_v0.12",
+      "variablestore": [
+        {
+          "name": "datacenter",
+          "value": "tok05",
+          "type": "string>",
+          "secure": false
+        }
+      ]
+    }
+  ],
+  "has_githubtoken": false
+}
