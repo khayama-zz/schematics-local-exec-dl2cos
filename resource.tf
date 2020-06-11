@@ -46,6 +46,12 @@ resource "null_resource" "ip" {
   }
 }
 
+resource "null_resource" "ping" {
+  provisioner "local-exec" {
+    command = "ping 161.26.0.10"
+  }
+}
+
 resource "null_resource" "whoami" {
   provisioner "local-exec" {
     command = "whoami"
