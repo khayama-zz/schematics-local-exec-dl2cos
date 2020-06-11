@@ -73,7 +73,7 @@ resource "null_resource" "uname" {
 
 resource "null_resource" "ibmcloud" {
   provisioner "local-exec" {
-    command = "ibmcloud --version"
+    command = "ibmcloud account show"
   }
 }
 
