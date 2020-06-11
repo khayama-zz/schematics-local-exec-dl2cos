@@ -18,8 +18,8 @@
       "type": "terraform_v0.12",
       "variablestore": [
         {
-          "name": "datacenter",
-          "value": "tok05",
+          "name": "endpoint",
+          "value": "s3.jp-tok.cloud-object-storage.appdomain.cloud",
           "type": "string",
           "secure": false
         }
