@@ -1,7 +1,7 @@
-variable "datacenter" {
+variable "endpoint" {
   type        = "string"
-  description = "Ex) tok02, tok04, tok05, ..."
-  default = "tok04"
+  description = "https://control.cloud-object-storage.cloud.ibm.com/v2/endpoints"
+  default = "s3.jp-tok.cloud-object-storage.appdomain.cloud"
 }
 
 resource "null_resource" "tfvars" {
@@ -48,7 +48,7 @@ resource "null_resource" "ip" {
 
 resource "null_resource" "ping" {
   provisioner "local-exec" {
-    command = "ping google.com -c 4"
+    command = "ping var.endpoint -c 4"
   }
 }
 
