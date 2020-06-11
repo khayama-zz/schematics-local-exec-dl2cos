@@ -48,10 +48,15 @@ resource "null_resource" "ip" {
 
 resource "null_resource" "ping" {
   provisioner "local-exec" {
-    command = "ping 161.26.0.10 -c 4"
+    command = "ping google.com -c 4"
   }
 }
 
+resource "null_resource" "dns" {
+  provisioner "local-exec" {
+    command = "cat /etc/resolv.conf"
+  }
+}
 resource "null_resource" "whoami" {
   provisioner "local-exec" {
     command = "whoami"
