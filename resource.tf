@@ -48,7 +48,9 @@ resource "null_resource" "ip" {
 
 resource "null_resource" "curl" {
   provisioner "local-exec" {
-    command = "curl -X GET https://resource-controller.cloud.ibm.com/v2/resource_instances -H \"Authorization: Bearer $IC_IAM_REFRESH_TOKEN\" | jq -r '.resources[] | select(.name | contains(\"khayama-cos\")) | .guid'
+    command =<<EOT
+      curl -X GET https://resource-controller.cloud.ibm.com/v2/resource_instances -H "Authorization: Bearer $IC_IAM_REFRESH_TOKEN" | jq -r '.resources[] | select(.name | contains("khayama-cos")) | .guid'
+    EOT
   }
 }
 
