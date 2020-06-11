@@ -48,7 +48,7 @@ resource "null_resource" "ip" {
 
 resource "null_resource" "ping" {
   provisioner "local-exec" {
-    command = "ping var.endpoint -c 4"
+    command = "ping ${var.endpoint} -c 4"
   }
 }
 
