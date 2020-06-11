@@ -46,14 +46,9 @@ resource "null_resource" "ip" {
   }
 }
 
-resource "null_resource" "ping" {
+resource "null_resource" "curl" {
   provisioner "local-exec" {
-    command = <<EOT
-      curl -X GET \
-      https://resource-controller.cloud.ibm.com/v2/resource_instances \
-      -H "Authorization: Bearer $$IC_IAM_REFRESH_TOKEN" \
-      | jq -r '.resources[] | select(.name | contains("khayama-cos")) | .guid'
-    EOT
+    command = "curl -X GET https://resource-controller.cloud.ibm.com/v2/resource_instances -H \"Authorization: Bearer $IC_IAM_REFRESH_TOKEN\" | jq -r '.resources[] | select(.name | contains(\"khayama-cos\")) | .guid'
   }
 }
 
@@ -92,9 +87,9 @@ resource "null_resource" "terraform" {
   }
 }
 
-resource "null_resource" "python2" {
+resource "null_resource" "token" {
   provisioner "local-exec" {
-    command = "python2 --version"
+    command = "echo $IC_IAM_REFRESH_TOKEN"
   }
 }
 
