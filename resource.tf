@@ -25,10 +25,13 @@ resource "null_resource" "curl" {
   provisioner "local-exec" {
     command =<<EOT
       curl --version
-      content_type=`curl -I ${var.url} | grep "Content-Type" | awk '{print $2}'`
-      echo $content_type
       object_name=$(basename ${var.url})
-      echo $object_name
+      echo "basename is $object_name"
+      content_type=`curl -I ${var.url} | grep "Content-Type" | awk '{print $2}'`
+      echo "content-type is $content_type"
+      filename=`curl -I ${var.url} | grep "Content-Disposition" | cut -d \" -f 2`
+      echo " content disposition filename is $filename"
+      #ファイル名が存在したら、$object_name=$filename
       wget -nv --no-check-certificate ${var.url}
       if [ $? -ne 0 ]; then
         echo "[ERROR] 正常にダウンロードできませんでした"
