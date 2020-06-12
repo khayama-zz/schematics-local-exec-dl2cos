@@ -25,6 +25,8 @@ resource "null_resource" "curl" {
   provisioner "local-exec" {
     command =<<EOT
       curl --version
+      content_type=`curl -I ${var.url} | grep "Content-Type" | awk '{print $2}'`
+      echo $content_type
       object_name=$(basename ${var.url})
       echo $object_name
       wget -nv --no-check-certificate ${var.url}
