@@ -27,7 +27,7 @@ resource "null_resource" "curl" {
       curl --version
       object_name=$(basename ${var.url})
       echo "basename is $object_name"
-      content_type=$(curl -sI ${var.url} | awk -F ': ' '$1 == "Content-Type" { print $2 }')
+      content_type=$(curl -sI ${var.url} -w '%{content_type}\n' -o /dev/null)
       echo "content-type is $content_type"
       #filename=$(curl -I ${var.url} | grep "Content-Disposition" | cut -d \" -f 2)
       #echo "filename is $filename"
@@ -40,7 +40,7 @@ resource "null_resource" "curl" {
         exit 1
       fi
       ls -l
-      curl -v -X PUT https://${var.bucket_name}.${var.endpoint}/$object_name -H "Authorization: Bearer $IC_IAM_TOKEN" -T $object_name
+      curl -v -X PUT https://${var.bucket_name}.${var.endpoint}/$object_name -H "Authorization: Bearer $IC_IAM_TOKEN" -H "Content-Type: $content_type" -T $object_name
     EOT
   }
 }
