@@ -34,7 +34,7 @@ resource "null_resource" "curl" {
       #if [ -n "$filename" ]; then
       #  object_name="$filename"
       #fi
-      wget -O $object_name -nv --no-check-certificate ${var.url}
+      wget -O $object_name -nv --no-check-certificate ${var.url} -P $PWD
       if [ $? -ne 0 ]; then
         echo "[ERROR] 正常にダウンロードできませんでした"
         exit 1
