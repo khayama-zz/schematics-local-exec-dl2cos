@@ -24,6 +24,7 @@ resource "null_resource" "curl" {
 
   provisioner "local-exec" {
     command =<<EOT
+      curl --version
       object_name=$(basename ${var.url})
       echo $object_name
       wget -nv --no-check-certificate ${var.url}
