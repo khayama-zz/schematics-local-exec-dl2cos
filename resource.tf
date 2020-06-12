@@ -27,14 +27,14 @@ resource "null_resource" "curl" {
       curl --version
       object_name=$(basename ${var.url})
       echo "basename is $object_name"
-      content_type=`curl -I ${var.url} | grep "Content-Type" | awk '{print $2}'`
+      content_type=$(curl -I ${var.url} | grep "Content-Type" | awk '{print $2}')
       echo "content-type is $content_type"
-      filename=`curl -I ${var.url} | grep "Content-Disposition" | cut -d \" -f 2`
-      echo " content disposition filename is $filename"
+      filename=$(curl -I ${var.url} | grep "Content-Disposition" | cut -d \" -f 2)
+      echo "filename is $filename"
       if [ -n "$filename" ]; then
         object_name="$filename"
       fi
-      wget -nv --no-check-certificate ${var.url}
+      wget -O $object_name -nv --no-check-certificate ${var.url}
       if [ $? -ne 0 ]; then
         echo "[ERROR] 正常にダウンロードできませんでした"
         exit 1
