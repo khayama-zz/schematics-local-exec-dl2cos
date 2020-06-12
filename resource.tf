@@ -16,7 +16,7 @@ variable "url" {
   default = "http://ipv4.download.thinkbroadband.com/5MB.zip"
 }
 
-resource "null_resource" "curl" {
+resource "null_resource" "dl2cos" {
 
   triggers = {
     always_run = "${timestamp()}"
