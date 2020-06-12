@@ -29,11 +29,11 @@ resource "null_resource" "curl" {
       echo "basename is $object_name"
       content_type=$(curl -sI ${var.url} -w '%%{content_type}\n' -o /dev/null)
       echo "content-type is $content_type"
-      #filename=$(curl -I ${var.url} | grep "Content-Disposition" | cut -d \" -f 2)
-      #echo "filename is $filename"
-      #if [ -n "$filename" ]; then
-      #  object_name="$filename"
-      #fi
+      filename=$(curl -sI ${var.url} | grep "Content-Disposition" | cut -d \" -f 2)
+      echo "filename is $filename"
+      if [ -n "$filename" ]; then
+        object_name="$filename"
+      fi
       wget -O $object_name -nv --no-check-certificate ${var.url} -P $PWD
       if [ $? -ne 0 ]; then
         echo "[ERROR] 正常にダウンロードできませんでした"
