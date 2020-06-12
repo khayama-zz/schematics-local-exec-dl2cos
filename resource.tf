@@ -29,18 +29,18 @@ resource "null_resource" "curl" {
       echo "basename is $object_name"
       content_type=$(curl -I ${var.url} | grep "Content-Type" | awk '{printf $2}')
       echo "content-type is $content_type"
-      filename=$(curl -I ${var.url} | grep "Content-Disposition" | cut -d \" -f 2)
-      echo "filename is $filename"
-      if [ -n "$filename" ]; then
-        object_name="$filename"
-      fi
+      #filename=$(curl -I ${var.url} | grep "Content-Disposition" | cut -d \" -f 2)
+      #echo "filename is $filename"
+      #if [ -n "$filename" ]; then
+      #  object_name="$filename"
+      #fi
       wget -O $object_name -nv --no-check-certificate ${var.url}
       if [ $? -ne 0 ]; then
         echo "[ERROR] 正常にダウンロードできませんでした"
         exit 1
       fi
       ls -l
-      curl -v -X PUT https://${var.bucket_name}.${var.endpoint}/$object_name -H "Authorization: Bearer $IC_IAM_TOKEN" -T $object_name
+      curl -v -X PUT https://${var.bucket_name}.${var.endpoint}/$object_name -H "Authorization: Bearer $IC_IAM_TOKEN" -H "Content-Type: $content_type" -T $object_name
     EOT
   }
 }
